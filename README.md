@@ -26,10 +26,9 @@
      /"""""--..     F    .-""-.      |\ \               L  ::::::::L
     J  ("  /| J    J   .' _/\_ `.    |_\ \              |   L____...L
     F ._) /"| F    |   |  >..<  |    | |\.'             |            Q
-   J-----..._J     F   `.==..==.'    |_|                Q             L
+
 
                               ASTRODOGES
-
 
 The Astrodoge is a community driven, fair launched DeFi Token. Four functions occur during each trade: Reflection, LP Acquisition, Burn, and Charity Donations
 
