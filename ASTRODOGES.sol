@@ -182,7 +182,7 @@ contract ADoge is ERC20, Ownable {
     	address indexed processor
     );
 
-    constructor() public ERC20("ADoge", "KRMA") {
+    constructor() public ERC20("ADoge", "ADOGE") {
         uint256 _BNBRewardsFee = 10;
         uint256 _liquidityFee = 5;
 
