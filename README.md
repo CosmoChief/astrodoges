@@ -35,7 +35,6 @@ The BUDStar is a community driven, fair launched DeFi Token. Four functions occu
 ## Features
 
 Community driven & fair launch. 
-BUDStar transfers rewards from a donation wallet to fund charities selected by the holders.
 Every trade contributes towards automatically generating liquidity that goes into multiple pools used by exchanges.
 Holders income rewards through static reflection as they watch their balance of BUSD grow indefinately.
 
