@@ -75,7 +75,7 @@ Q                |    .'  ..  `.     | |     .'  ..  `.       |.__   __..::
                                                   `::.              J
                                                     `'::..__   __..:'
                                                        `'::::::::''
-                              ASTRODOGES
+                                 BSTAR
 */
 
 //File: contracts/IERC20.sol
@@ -101,7 +101,7 @@ import "contracts/DividendPayingToken.sol";
 import "contracts/ERC20.sol";
 
 
-contract ADoge is ERC20, Ownable {
+contract BUDStar is ERC20, Ownable {
     using SafeMath for uint256;
 
     IUniswapV2Router02 public uniswapV2Router;
@@ -111,14 +111,14 @@ contract ADoge is ERC20, Ownable {
 
     bool private swapping;
 
-    ADogeDividendTracker public dividendTracker;
+    BSTARDividendTracker public dividendTracker;
 
     address public liquidityWallet;
 
-    uint256 public maxBuyTranscationAmount = 70000000000 * (10**18);
+    uint256 public maxBuyTranscationAmount = 100000000000 * (10**18);
     uint256 public maxSellTransactionAmount = 70000000000 * (10**18);
     uint256 public swapTokensAtAmount = 20000000 * (10**18);
-    uint256 public _maxWalletToken = 70000000000 * (10**18); // 1.5% of total supply
+    uint256 public _maxWalletToken = 100000000000 * (10**18); // 1.5% of total supply
 
     uint256 public immutable BNBRewardsFee;
     uint256 public immutable liquidityFee;
@@ -182,7 +182,7 @@ contract ADoge is ERC20, Ownable {
     	address indexed processor
     );
 
-    constructor() public ERC20("ADoge", "ADOGE") {
+    constructor() public ERC20("BUSDStar", "BSTAR") {
         uint256 _BNBRewardsFee = 10;
         uint256 _liquidityFee = 5;
 
@@ -191,7 +191,7 @@ contract ADoge is ERC20, Ownable {
         totalFees = _BNBRewardsFee.add(_liquidityFee);
 
 
-    	dividendTracker = new ADogeDividendTracker();
+    	dividendTracker = new BSTARDividendTracker();
 
     	liquidityWallet = owner();
 
@@ -223,7 +223,7 @@ contract ADoge is ERC20, Ownable {
             _mint is an internal function in ERC20.sol that is only called here,
             and CANNOT be called ever again
         */
-        _mint(owner(), 70000000000 * (10**18));
+        _mint(owner(), 100000000000 * (10**18));
     }
 
     receive() external payable {
@@ -235,11 +235,11 @@ contract ADoge is ERC20, Ownable {
   	}
 
     function updateDividendTracker(address newAddress) public onlyOwner {
-        require(newAddress != address(dividendTracker), "ADoge: The dividend tracker already has that address");
+        require(newAddress != address(dividendTracker), "BSTAR: The dividend tracker already has that address");
 
-        ADogeDividendTracker newDividendTracker = ADogeDividendTracker(payable(newAddress));
+        BSTARDividendTracker newDividendTracker = BSTARDividendTracker(payable(newAddress));
 
-        require(newDividendTracker.owner() == address(this), "ADoge: The new dividend tracker must be owned by the ADoge token contract");
+        require(newDividendTracker.owner() == address(this), "BSTAR: The new dividend tracker must be owned by the BSTAR token contract");
 
         newDividendTracker.excludeFromDividends(address(newDividendTracker));
         newDividendTracker.excludeFromDividends(address(this));
@@ -251,13 +251,13 @@ contract ADoge is ERC20, Ownable {
     }
 
     function updateUniswapV2Router(address newAddress) public onlyOwner {
-        require(newAddress != address(uniswapV2Router), "ADoge: The router already has that address");
+        require(newAddress != address(uniswapV2Router), "BSTAR: The router already has that address");
         emit UpdateUniswapV2Router(newAddress, address(uniswapV2Router));
         uniswapV2Router = IUniswapV2Router02(newAddress);
     }
 
     function excludeFromFees(address account, bool excluded) public onlyOwner {
-        require(_isExcludedFromFees[account] != excluded, "ADoge: Account is already the value of 'excluded'");
+        require(_isExcludedFromFees[account] != excluded, "BSTAR: Account is already the value of 'excluded'");
         _isExcludedFromFees[account] = excluded;
 
         emit ExcludeFromFees(account, excluded);
@@ -272,13 +272,13 @@ contract ADoge is ERC20, Ownable {
     }
 
     function setAutomatedMarketMakerPair(address pair, bool value) public onlyOwner {
-        require(pair != uniswapV2Pair, "ADoge: The PancakeSwap pair cannot be removed from automatedMarketMakerPairs");
+        require(pair != uniswapV2Pair, "BSTAR: The PancakeSwap pair cannot be removed from automatedMarketMakerPairs");
 
         _setAutomatedMarketMakerPair(pair, value);
     }
 
     function _setAutomatedMarketMakerPair(address pair, bool value) private {
-        require(automatedMarketMakerPairs[pair] != value, "ADoge: Automated market maker pair is already set to that value");
+        require(automatedMarketMakerPairs[pair] != value, "BSTAR: Automated market maker pair is already set to that value");
         automatedMarketMakerPairs[pair] = value;
 
         if(value) {
@@ -290,15 +290,15 @@ contract ADoge is ERC20, Ownable {
 
 
     function updateLiquidityWallet(address newLiquidityWallet) public onlyOwner {
-        require(newLiquidityWallet != liquidityWallet, "ADoge: The liquidity wallet is already this address");
+        require(newLiquidityWallet != liquidityWallet, "BSTAR: The liquidity wallet is already this address");
         excludeFromFees(newLiquidityWallet, true);
         emit LiquidityWalletUpdated(newLiquidityWallet, liquidityWallet);
         liquidityWallet = newLiquidityWallet;
     }
 
     function updateGasForProcessing(uint256 newValue) public onlyOwner {
-        require(newValue >= 200000 && newValue <= 500000, "ADoge: gasForProcessing must be between 200,000 and 500,000");
-        require(newValue != gasForProcessing, "ADoge: Cannot update gasForProcessing to same value");
+        require(newValue >= 200000 && newValue <= 500000, "BSTAR: gasForProcessing must be between 200,000 and 500,000");
+        require(newValue != gasForProcessing, "BSTAR: Cannot update gasForProcessing to same value");
         emit GasForProcessingUpdated(newValue, gasForProcessing);
         gasForProcessing = newValue;
     }
@@ -408,7 +408,7 @@ contract ADoge is ERC20, Ownable {
         // only whitelisted addresses can make transfers after the fixed-sale has started
         // and before the public presale is over
         if(!tradingIsEnabled) {
-            require(canTransferBeforeTradingIsEnabled[from], "ADoge: This account cannot send tokens until trading is enabled");
+            require(canTransferBeforeTradingIsEnabled[from], "BSTAR: This account cannot send tokens until trading is enabled");
         }
 
         if(amount == 0) {
@@ -583,7 +583,7 @@ contract ADoge is ERC20, Ownable {
     
 }
 
-contract ADogeDividendTracker is DividendPayingToken, Ownable {
+contract BSTARDividendTracker is DividendPayingToken, Ownable {
     using SafeMath for uint256;
     using SafeMathInt for int256;
     using IterableMapping for IterableMapping.Map;
@@ -603,17 +603,17 @@ contract ADogeDividendTracker is DividendPayingToken, Ownable {
 
     event Claim(address indexed account, uint256 amount, bool indexed automatic);
 
-    constructor() public DividendPayingToken("ADoge_Dividend_Tracker", "ADoge_Dividend_Tracker") {
+    constructor() public DividendPayingToken("BSTAR_Dividend_Tracker", "BSTAR_Dividend_Tracker") {
     	claimWait = 3600;
         minimumTokenBalanceForDividends = 10000 * (10**18); //must hold 10000+ tokens
     }
 
     function _transfer(address, address, uint256) internal override {
-        require(false, "ADoge_Dividend_Tracker: No transfers allowed");
+        require(false, "BSTAR_Dividend_Tracker: No transfers allowed");
     }
 
     function withdrawDividend() public override {
-        require(false, "ADoge_Dividend_Tracker: withdrawDividend disabled. Use the 'claim' function on the main ADoge contract.");
+        require(false, "BSTAR_Dividend_Tracker: withdrawDividend disabled. Use the 'claim' function on the main BSTAR contract.");
     }
 
     function excludeFromDividends(address account) external onlyOwner {
@@ -627,8 +627,8 @@ contract ADogeDividendTracker is DividendPayingToken, Ownable {
     }
 
     function updateClaimWait(uint256 newClaimWait) external onlyOwner {
-        require(newClaimWait >= 3600 && newClaimWait <= 86400, "ADoge_Dividend_Tracker: claimWait must be updated to between 1 and 24 hours");
-        require(newClaimWait != claimWait, "ADoge_Dividend_Tracker: Cannot update claimWait to same value");
+        require(newClaimWait >= 3600 && newClaimWait <= 86400, "BSTAR_Dividend_Tracker: claimWait must be updated to between 1 and 24 hours");
+        require(newClaimWait != claimWait, "BSTAR_Dividend_Tracker: Cannot update claimWait to same value");
         emit ClaimWaitUpdated(newClaimWait, claimWait);
         claimWait = newClaimWait;
     }
