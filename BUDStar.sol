@@ -54,7 +54,7 @@ import "contracts/DividendPayingToken.sol";
 import "contracts/ERC20.sol";
 
 
-contract BUDStar is ERC20, Ownable {
+contract BUSDstar is ERC20, Ownable {
     using SafeMath for uint256;
 
     IUniswapV2Router02 public uniswapV2Router;
