@@ -28,16 +28,16 @@
     F ._) /"| F    |   |  >..<  |    | |\.'             |            Q
 
 
-                              ASTRODOGES
+                               BUSDSTAR
 
-The Astrodoge is a community driven, fair launched DeFi Token. Four functions occur during each trade: Reflection, LP Acquisition, Burn, and Charity Donations
+The BUDStar is a community driven, fair launched DeFi Token. Four functions occur during each trade: Reflection, LP Acquisition, Burn, and Charity Donations
 
 ## Features
 
 Community driven & fair launch. 
-Karma transfers rewards from a donation wallet to fund charities selected by the holders.
+BUDStar transfers rewards from a donation wallet to fund charities selected by the holders.
 Every trade contributes towards automatically generating liquidity that goes into multiple pools used by exchanges.
-Holders & Charities earn passive income rewards through static reflection as they watch their balance of BUSD grow indefinately.
+Holders income rewards through static reflection as they watch their balance of BUSD grow indefinately.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
